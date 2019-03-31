@@ -5,7 +5,16 @@ import { RouterModule } from '@angular/router';
 // 3rd party modules
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+// components
+import { ListItemComponent } from './components/list-item/list-item.component';
+
+// services
 import { MealsService } from './services/meals/meals.service';
+import { WorkoutsService } from './services/workouts/workouts.service';
+
+// pipes
+import { JoinPipe } from './pipes/join.pipe';
+import { WorkoutPipe } from './pipes/workout.pipe';
 
 @NgModule({
     imports: [
@@ -13,7 +22,16 @@ import { MealsService } from './services/meals/meals.service';
         RouterModule,
         AngularFireDatabaseModule
     ],
-    declarations: []
+    declarations: [
+        ListItemComponent,
+        JoinPipe,
+        WorkoutPipe
+    ],
+    exports: [
+        ListItemComponent,
+        JoinPipe,
+        WorkoutPipe
+    ]
 })
 
 export class SharedModule {
@@ -21,7 +39,8 @@ export class SharedModule {
         return {
             ngModule: SharedModule,
             providers: [
-                MealsService
+                MealsService,
+                WorkoutsService
             ]
         };
     }
